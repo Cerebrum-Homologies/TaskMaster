@@ -1,0 +1,79 @@
+[gd_scene load_steps=7 format=3 uid="uid://bvev40ri06ank"]
+
+[ext_resource type="Script" path="res://Scripts/ColorNote.cs" id="1_rmljh"]
+[ext_resource type="Shader" path="res://Scenes/Components/ColorNote_BlitzRectangle.gdshader" id="2_r63wj"]
+[ext_resource type="Texture2D" uid="uid://djg5ems6hr10k" path="res://Assets/Images/paper_artz1.png" id="3_4df5p"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_u7vdn"]
+shader = ExtResource("2_r63wj")
+
+[sub_resource type="Shader" id="Shader_g63i8"]
+code = "shader_type canvas_item;
+
+void fragment() {
+	bool band_change = ( ( int(UV.y * 512.0) / 3) % 2) == 1;
+	if (band_change)
+		COLOR = vec4(UV.x * 0.35, (UV.y * 0.15) + 0.275, 0.75, 1);
+	else
+		COLOR = vec4(UV.x * 0.35, (UV.y * 0.425) + 0.275, 0.625, 1);
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_b56r3"]
+shader = SubResource("Shader_g63i8")
+
+[node name="ColorNote" type="Control"]
+clip_contents = true
+custom_minimum_size = Vector2(240, 90)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -780.0
+offset_bottom = -520.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rmljh")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -1
+material = SubResource("ShaderMaterial_u7vdn")
+clip_contents = true
+custom_minimum_size = Vector2(240, 90)
+layout_mode = 0
+offset_right = 420.0
+offset_bottom = 280.0
+color = Color(1, 1, 1, 0.14902)
+
+[node name="Sprite2D" type="Sprite2D" parent="ColorRect"]
+use_parent_material = true
+position = Vector2(81, 10)
+scale = Vector2(1.31641, 1.03906)
+texture = ExtResource("3_4df5p")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+clip_contents = true
+custom_minimum_size = Vector2(240, 90)
+layout_mode = 0
+offset_right = 420.0
+offset_bottom = 280.0
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="HFlowContainer" type="HFlowContainer" parent="MarginContainer"]
+material = SubResource("ShaderMaterial_b56r3")
+use_parent_material = true
+custom_minimum_size = Vector2(240, 90)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/HFlowContainer"]
+custom_minimum_size = Vector2(240, 38)
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "Click here to add note text
+*Item 1
+*Item 2
+... etc"

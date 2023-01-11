@@ -1,0 +1,53 @@
+[gd_scene load_steps=6 format=3 uid="uid://b5yrpt4yg1bt8"]
+
+[ext_resource type="Script" path="res://Scripts/WorkDesk.cs" id="1_l7hfb"]
+[ext_resource type="PackedScene" uid="uid://bvev40ri06ank" path="res://Scenes/Components/ColorNote.tscn" id="2_s4rpr"]
+[ext_resource type="Shader" path="res://Scenes/Components/ColorNote.gdshader" id="3_03kwq"]
+
+[sub_resource type="SystemFont" id="SystemFont_wssfy"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kbw8n"]
+shader = ExtResource("3_03kwq")
+
+[node name="WorkDesk" type="Node2D"]
+script = ExtResource("1_l7hfb")
+
+[node name="Container-WorkDesk" type="GridContainer" parent="."]
+clip_contents = true
+offset_right = 1200.0
+offset_bottom = 800.0
+columns = 2
+
+[node name="RTLabel-Title" type="RichTextLabel" parent="Container-WorkDesk"]
+custom_minimum_size = Vector2(0, 42)
+layout_mode = 2
+size_flags_vertical = 5
+theme_override_colors/default_color = Color(0, 0.976471, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.290196, 0.101961, 0.0156863, 0.933333)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_fonts/normal_font = SubResource("SystemFont_wssfy")
+theme_override_font_sizes/normal_font_size = 30
+text = "Task Master"
+
+[node name="Panel" type="Panel" parent="Container-WorkDesk"]
+layout_mode = 2
+
+[node name="PanelContainer-Space" type="PanelContainer" parent="Container-WorkDesk"]
+custom_minimum_size = Vector2(1200, 750)
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="ColorNote" parent="Container-WorkDesk/PanelContainer-Space" instance=ExtResource("2_s4rpr")]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_kbw8n")
+offset_top = 50.0
+offset_right = 1200.0
+offset_bottom = 850.0
+size_flags_horizontal = 3
+size_flags_vertical = 10
+color = Color(1, 1, 1, 0.0470588)
