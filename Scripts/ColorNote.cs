@@ -10,6 +10,8 @@ namespace TaskMaster
 		private HFlowContainer flowLayoutContainer;
 		private ColorRect colorRect;
 		private Sprite2D spriteImage;
+		private Sprite2D spriteButtonEdit;
+		private CanvasLayer canvasOverlay;
 
 		public override void _Ready()
 		{
@@ -18,6 +20,7 @@ namespace TaskMaster
 			colorRect = GetNodeOrNull<ColorRect>("ColorRect");
 			spriteImage = colorRect.GetNodeOrNull<Sprite2D>("Sprite2D");
 			Diagnostics.PrintNullValueMessage(marginContainer, "marginContainer");
+			canvasOverlay = GetNodeOrNull<CanvasLayer>("CanvasOverlay");
 			if (marginContainer != null)
 			{
 				marginContainer.Size = Size;
@@ -31,6 +34,10 @@ namespace TaskMaster
 				Diagnostics.PrintNullValueMessage(flowLayoutContainer, "flowLayoutContainer");
 				flowLayoutContainer.CustomMinimumSize = Size;
 				flowLayoutContainer.Size = Size;
+			}
+			if (canvasOverlay != null)
+			{
+
 			}
 			Diagnostics.PrintObjectProperties("ColorNote", this);
 		}

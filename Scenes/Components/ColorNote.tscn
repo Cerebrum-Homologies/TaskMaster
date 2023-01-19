@@ -24,7 +24,7 @@ shader = SubResource("Shader_g63i8")
 
 [node name="ColorNote" type="Control"]
 clip_contents = true
-custom_minimum_size = Vector2(240, 90)
+custom_minimum_size = Vector2(320, 120)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

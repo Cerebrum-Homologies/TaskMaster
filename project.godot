@@ -23,3 +23,7 @@ window/size/viewport_height=800
 [dotnet]
 
 project/assembly_name="TaskMaster"
+
+[editor]
+
+export/convert_text_resources_to_binary=true

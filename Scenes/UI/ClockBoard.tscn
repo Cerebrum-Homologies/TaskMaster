@@ -1,10 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://cwut88ghgdl0x"]
+[gd_scene load_steps=3 format=3 uid="uid://cwut88ghgdl0x"]
 
 [ext_resource type="Script" path="res://Scripts/ClockBoard.cs" id="1_nrr3l"]
+[ext_resource type="PackedScene" uid="uid://bnprqgdhcnddp" path="res://Scenes/UI/AnalogClock.tscn" id="2_jter1"]
 
 [node name="ClockBoard" type="Control"]
+custom_minimum_size = Vector2(480, 320)
 layout_mode = 3
-anchors_preset = 0
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
@@ -18,3 +20,11 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 columns = 4
+
+[node name="CheckButton" type="CheckButton" parent="GridContainer"]
+custom_minimum_size = Vector2(200, 36)
+layout_mode = 2
+text = "Show Analog clock"
+
+[node name="AnalogClock" parent="GridContainer" instance=ExtResource("2_jter1")]
+layout_mode = 2

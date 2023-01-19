@@ -1,0 +1,12 @@
+shader_type canvas_item;
+
+void fragment() {
+	vec4 texture_color = texture(TEXTURE, UV);
+	bool band_change = ( ( int(UV.x * 512.0) / 48) % 2) == 1;
+	if (band_change)
+		COLOR = vec4((UV.x * 0.125) + texture_color.r,
+		(UV.y * 0.125) + texture_color.g, (UV.x * 0.125) + texture_color.b, 0.825);
+	else
+		COLOR = vec4((UV.x * 0.175) + texture_color.r,
+		(UV.y * 0.175) + texture_color.g, (UV.x * 0.175) + texture_color.b, 0.725);
+}

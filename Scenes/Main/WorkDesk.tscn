@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://b5yrpt4yg1bt8"]
+[gd_scene load_steps=8 format=3 uid="uid://b5yrpt4yg1bt8"]
 
 [ext_resource type="Script" path="res://Scripts/WorkDesk.cs" id="1_l7hfb"]
 [ext_resource type="PackedScene" uid="uid://bvev40ri06ank" path="res://Scenes/Components/ColorNote.tscn" id="2_s4rpr"]
+[ext_resource type="PackedScene" uid="uid://cwut88ghgdl0x" path="res://Scenes/UI/ClockBoard.tscn" id="3_0nlq8"]
 [ext_resource type="Shader" path="res://Scenes/Components/ColorNote.gdshader" id="3_03kwq"]
+[ext_resource type="PackedScene" uid="uid://detsr04ottoam" path="res://Scenes/UI/FancyClock.tscn" id="4_n1n1x"]
 
 [sub_resource type="SystemFont" id="SystemFont_wssfy"]
 
@@ -38,10 +40,21 @@ custom_minimum_size = Vector2(1200, 750)
 layout_mode = 2
 size_flags_vertical = 8
 
-[node name="ColorNote" parent="Container-WorkDesk/PanelContainer-Space" instance=ExtResource("2_s4rpr")]
+[node name="GridContainer" type="GridContainer" parent="Container-WorkDesk/PanelContainer-Space"]
+clip_contents = true
+layout_mode = 2
+
+[node name="ColorNote" parent="Container-WorkDesk/PanelContainer-Space/GridContainer" instance=ExtResource("2_s4rpr")]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
+
+[node name="ClockBoard" parent="Container-WorkDesk/PanelContainer-Space/GridContainer" instance=ExtResource("3_0nlq8")]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="FancyClock" parent="Container-WorkDesk/PanelContainer-Space/GridContainer" instance=ExtResource("4_n1n1x")]
+layout_mode = 2
 
 [node name="ColorRect" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_kbw8n")

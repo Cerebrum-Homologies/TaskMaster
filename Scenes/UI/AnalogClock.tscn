@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://bnprqgdhcnddp"]
+
+[ext_resource type="Script" path="res://Scripts/AnalogClock.cs" id="1_bbrw7"]
+
+[sub_resource type="Gradient" id="Gradient_jr2y4"]
+offsets = PackedFloat32Array(0.183486, 0.266055, 0.477064, 0.770642, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.101124, 0.101124, 0.101124, 1, 0.359551, 0.359551, 0.359551, 1, 0.719101, 0.719101, 0.719101, 1, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_s5ana"]
+fractal_lacunarity = 2.5
+fractal_weighted_strength = 0.31
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ipwl4"]
+color_ramp = SubResource("Gradient_jr2y4")
+noise = SubResource("FastNoiseLite_s5ana")
+
+[node name="AnalogClock" type="Control"]
+custom_minimum_size = Vector2(360, 280)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 500.0
+offset_bottom = 420.0
+script = ExtResource("1_bbrw7")
+
+[node name="PanelBackground" type="PanelContainer" parent="."]
+clip_contents = true
+layout_mode = 0
+
+[node name="TextureRect" type="TextureRect" parent="PanelBackground"]
+z_index = -1
+layout_mode = 2
+texture = SubResource("NoiseTexture2D_ipwl4")
